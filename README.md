@@ -11,6 +11,9 @@ Although I included the static page with all the resources in the assignment sub
 <img width="2541" height="1266" alt="image" src="https://github.com/user-attachments/assets/d078e98a-4ef6-4e42-a2f5-c2da400cc79f" />
 <img width="2541" height="1266" alt="image" src="https://github.com/user-attachments/assets/01ab089b-41f8-4a64-bcc1-745fa3521a96" />
 
+
+
+
 # Week 2 Assignment Requirements
 
 This chart is designed to fulfill the assignment requirement to:
