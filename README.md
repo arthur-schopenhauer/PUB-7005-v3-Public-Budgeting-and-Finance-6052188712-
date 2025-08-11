@@ -1,7 +1,7 @@
 # PUB 7005 v3 Public Budgeting and Finance (6052188712) Assignment
 Week 2 - Assignment: Evaluate Assessment and Ethics in Public Budgetary Procedures
 The County of San Diego Budget: An Interactive Analysis
-This HTML file provides an interactive chart that diagrams the prevalent budgetary needs of the County of San Diego over the last three fiscal years. HTML allows for clear organization and visualization of data in a needs assessment chart, making it compatible with Northcentral University's digital submission requirements.
+This HTML file provides an interactive chart that diagrams the prevalent budgetary needs of the County of San Diego over the last three fiscal years. HTML allows for clear organization and visualization of data in a needs assessment chart. 
 
 # To View the Diagrams
 Although I included the statis page in the assignment it may not display properly in some browsers. If that happens to view the chart and its annotations, It is possible to download the [Bar Chart](https://github.com/arthur-schopenhauer/PUB-7005-v3-Public-Budgeting-and-Finance-6052188712-/blob/main/BarChart.html) file  above by clicking on the link. Once downloaded to the Downloads folder of your computer open it in a web browser (such as Chrome, Firefox, or Safari). The rationale for using this format to meet theThank you, Dr. Biddle for this opportunity. -G.
