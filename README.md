@@ -15,6 +15,6 @@ To properly view the chart and its annotations, you must download the [Bar Chart
 
 This chart is designed to fulfill the assignment requirement to:
 
-"Diagram the prevalent categories that describe budgetary needs over the last 3 fiscal years."
+    1. "Diagram the prevalent categories that describe budgetary needs over the last 3 fiscal years."
 
-"Annotate the chart with the methods used by the entity to research needs."
+    2. "Annotate the chart with the methods used by the entity to research needs."
