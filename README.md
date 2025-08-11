@@ -1,4 +1,4 @@
-# PUB-7005-v3-Public-Budgeting-and-Finance-6052188712-
+# PUB 7005 v3 Public Budgeting and Finance (6052188712) - National University
 Week 2 - Assignment: Evaluate Assessment and Ethics in Public Budgetary Procedures
 The County of San Diego Budget: An Interactive Analysis
 This HTML file provides an interactive chart that diagrams the prevalent budgetary needs of the County of San Diego over the last three fiscal years. 
