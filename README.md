@@ -9,7 +9,7 @@ To properly view the chart and its annotations, you must download the [Bar Chart
 # Rendered Chart
 <img width="1280" height="905" alt="image" src="https://github.com/user-attachments/assets/3604eaec-d043-4356-b468-d61d3c5123d3" />
 
-# Assignment Requirements
+# Week 2 Assignment Requirements
 
 This chart is designed to fulfill the assignment requirement to:
 
