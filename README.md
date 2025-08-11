@@ -5,7 +5,7 @@ This HTML file provides an interactive chart that diagrams the prevalent budgeta
 
 # To View the Diagrams
 To properly view the chart and its annotations, you must download the [Bar Chart](https://github.com/arthur-schopenhauer/PUB-7005-v3-Public-Budgeting-and-Finance-6052188712-/blob/main/BarChart.html) file  above by clicking on the link. Once downloaded to the Downloads folder of your computer open it in a web browser (such as Chrome, Firefox, or Safari). -G.
-<img width="2230" height="905" alt="image" src="https://github.com/user-attachments/assets/135aa868-3603-4ac4-a226-e3cbcc422225" />
+<img width="2541" height="1266" alt="Screenshot 2025-08-10 at 9 43 06 PM" src="https://github.com/user-attachments/assets/aaeae9d7-6853-4511-a894-0a87a0694941" />
 # Rendered Charts
 <img width="1280" height="905" alt="image" src="https://github.com/user-attachments/assets/3604eaec-d043-4356-b468-d61d3c5123d3" />
 <img width="2541" height="1266" alt="image" src="https://github.com/user-attachments/assets/d078e98a-4ef6-4e42-a2f5-c2da400cc79f" />
