@@ -5,6 +5,7 @@ This HTML file provides an interactive chart that diagrams the prevalent budgeta
 
 # Instructions
 To properly view the chart and its annotations, you must download this file and open it in a web browser (such as Chrome, Firefox, or Safari).
+<img width="1280" height="905" alt="image" src="https://github.com/user-attachments/assets/3604eaec-d043-4356-b468-d61d3c5123d3" />
 
 # Assignment Requirements
 This chart is designed to fulfill the assignment requirement to:
