@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>County of San Diego — Budget & Negotiated Factors (FY22–23 → FY25–26)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121832; --ink:#e7ecff; --muted:#a8b2d1; --accent:#8ad0ff; --subtle:#253055; --chip:#1c2447;
+  }
+  html,body{height:100%}
+  body{margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:radial-gradient(1000px 600px at 10% -10%, #1a2260 0%, var(--bg) 50%) fixed; color:var(--ink)}
+  .wrap{max-width: auto; margin:0 auto; padding:28px 20px 40px}
+  header{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center; margin-bottom:18px}
+  .title{font-size:clamp(22px,3.2vw,38px); font-weight:800; letter-spacing:.2px}
+  .subtitle{color:var(--muted)}
+  .grid{display:grid; grid-template-columns:1.1fr 1fr; gap:18px}
+  @media (max-width:1024px){ .grid{grid-template-columns:1fr} }
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)); border:1px solid var(--subtle); border-radius:18px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,.25)}
+
+  /* Chart area (DOM‑drawn, no CDN needed) */
+  .chart{height:520px; position:relative}
+  .y-label{position:absolute; top:12px; left:12px; font-size:12px; color:var(--muted)}
+  .y-grid{position:absolute; inset:0}
+  .y-grid .line{position:absolute; left:0; right:0; border-top:1px dashed #2f3969}
+  .y-grid .tick{position:absolute; left:8px; transform:translateY(50%); font-size:11px; color:#8ea0d9}
+  .bars{position:absolute; inset:0; display:flex; align-items:flex-end; gap:18px; padding:42px 14px 54px 70px}
+  .cat{flex:1; display:grid; grid-template-rows:1fr auto; gap:8px}
+  .group{display:flex; align-items:flex-end; gap:10px; justify-content:center; position:relative}
+  .bar{width:22px; border-radius:6px 6px 4px 4px; outline:1px solid rgba(255,255,255,.28); position:relative}
+  .bar[data-year="FY23"]{background:linear-gradient(180deg, rgba(138,208,255,.95), rgba(138,208,255,.35))}
+  .bar[data-year="FY24"]{background:linear-gradient(180deg, rgba(166,255,196,.95), rgba(166,255,196,.4))}
+  .bar[data-year="FY26"]{background:linear-gradient(180deg, rgba(255,215,141,.95), rgba(255,215,141,.4))}
+  .bar .val{position:absolute; left:50%; transform:translateX(-50%); bottom:calc(100% + 4px); font-size:11px; color:#cfe2ff}
+  .x-label{font-size:12px; text-align:center; color:var(--muted)}
+  .delta{position:absolute; top:-16px; right:-6px; background:var(--panel); border:1px solid var(--subtle); border-radius:10px; padding:2px 6px; font-size:11px}
+  .pos{color:#b9f8c9} .neg{color:#ffc2c2}
+
+  /* Totals table */
+  table{width:100%; border-collapse:separate; border-spacing:0; overflow:scroll; border:1px solid var(--subtle); border-radius:14px}
+  th,td{padding:10px 12px; font-size:13px}
+  thead th{background:#121832; color:#d9e4ff; text-align:right}
+  thead th:first-child, tbody td:first-child{ text-align:left }
+  tbody tr:nth-child(odd){ background:rgba(255,255,255,.03) }
+
+  /* Factors/Notes */
+  .factors h3{margin:.6rem 0 .3rem}
+  .doc{border-left:3px solid #33407a; padding-left:10px; margin:10px 0}
+  .doc small{color:#9fb0e9}
+
+  @page{size:8.5in 14in; margin:.5in}
+  @media print{ body{background:#fff} .card{box-shadow:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="title">County of San Diego — Budget by Functional Area</div>
+      <div class="subtitle">FY 2023–24 (Revised), FY 2024–25 (Revised), FY 2025–26 (Revised) — amounts in $ millions</div>
+    </div>
+    <div><button onclick="window.print()" style="background:var(--chip); color:var(--ink); border:1px solid var(--subtle); border-radius:12px; padding:10px 14px; cursor:pointer">Print</button></div>
+  </header>
+
+  <section class="grid">
+    <!-- LEFT: chart + table -->
+    <div class="card">
+      <div class="chart" id="chart">
+        <div class="y-label">Appropriations (millions)</div>
+        <div class="y-grid" id="ygrid"></div>
+        <div class="bars" id="bars"></div>
+      </div>
+      <div style="margin-top:14px">
+        <h3 style="margin:0 0 8px 0; font-size:16px">Totals by Functional Area ($ millions)</h3>
+        <table id="table"></table>
+      </div>
+    </div>
+
+    <!-- RIGHT: consolidated negotiated factors & notes -->
+    <div class="card factors">
+      <h2 style="margin:0 0 6px 0; font-size:18px">Negotiated Factors & Key Decisions</h2>
+      <p class="subtitle" style="margin:0 0 10px 0">Pulled from County Budget Archive.</p>
+
+      <div class="doc">
+        <h3></small></h3>
+      </div>
+
+      <div class="doc">
+        <h3>2023–2024 <em>Recommended Budget</em> <small></small></h3>
+        <ul>
+          <li>Equity, Diversity & Inclusion (EDI) division created; extended D&I strategy.</li>
+          <li>Budget built on equity, excellence, community engagement; HHSA increases for safety-net caseloads and new programs.</li>
+          <li>Racism declared a public health crisis with steps to address inequities.</li>
+          <li>Partnership with D&I Executive Council; policies & practices assessments.</li>
+          <li>Programs referenced: Child & Family Well‑Being; Safe Destination Nights.</li>
+          <li>Equity impact statements; enhanced data collection; department goals and tracking.</li>
+          <li>Role of ERGs and Department of Homeless Solutions & Equitable Communities.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2024–2025 <em>Recommended Budget</em> <small></small></h3>
+        <ul>
+          <li>Total budget $8.48B (+3.9% YoY).</li>
+          <li>Sustainability focus: environmental projects; target 90% emissions reduction by 2030.</li>
+          <li>Homelessness: collaborative multi‑agency efforts.</li>
+          <li>Operational practices: review procedures/systems for efficiency; examine entities & special districts.</li>
+          <li>Public accountability: inquiries into written complaints and incidents; monthly workload/annual reports.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2023–2024 <em>Adopted Budget</em> <small></small></h3>
+        <ul>
+          <li>Priorities: integrity, equity, sustainability shaped by community input.</li>
+          <li>Increases to affordable housing, safety‑net programs, and health services to address homelessness & vulnerable populations.</li>
+          <li>Investments in infrastructure & public safety; capital projects and staffing expansions.</li>
+          <li>Document is a budget report; not a scientific methodology write‑up.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2024–2025 <em>Budget Change Letter</em> <small></small></h3>
+        <ul>
+          <li>Revised recommended budget: $8.53B (+0.6% vs operational plan; +4.5% vs prior adopted).</li>
+          <li>+$0.3M for language access; staffing up in County Counsel for legislative support & enforcement.</li>
+          <li>Appropriation increases across Public Safety, HHSA, Finance & General Govt, Land Use & Environment.</li>
+          <li>Methods: use of CAO Recommended Operational Plan revisions; tracking staffing/appropriations/revenues with detailed tables.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2022–2023 <em>Budget Change Letter</em> <small></small></h3>
+        <ul>
+          <li>Overall increase driven by negotiated labor costs (salaries & benefits).</li>
+          <li>Public Safety Group +8 staff years; +$38.4M appropriations.</li>
+          <li>Total budget ↑ $110.5M, focusing on labor and public safety initiatives.</li>
+          <li>Method: analyze revenue & expenditures to revise allocations.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2022–2023 <em>Adopted Budget</em> <small></small></h3>
+        <ul>
+          <li>Budget $7.36B (+1.8%).</li>
+          <li>Public Safety Group ↑ $253.3M; HHSA ↓ as pandemic costs recede.</li>
+          <li>Prioritizes equity & community engagement; Budget Equity Assessment Tool applied.</li>
+          <li>Method: modified accrual basis (GAAP), performance measures, community engagement (e.g., Live Well Communities).</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2023–2024 <em>Budget Change Letter</em> <small></small></h3>
+        <ul>
+          <li>Implements Board direction to remove barriers to housing; pro‑housing initiatives.</li>
+          <li>Staffing ↑ by 50.00 staff years (+0.2%).</li>
+          <li>Appropriations: +$60.6M (+0.7%) vs plan; +$806.4M (+11.0%) vs FY22–23 Adopted.</li>
+          <li>Methods: analyze category increases/decreases; staffing changes; revenue tracking aligned with Board direction.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3>2024–2025 <em>Adopted Budget</em> <small></small></h3>
+        <ul>
+          <li>Strategy: sustain core services; limit growth in mandated programs.</li>
+          <li>Funding increases for Public Safety Group & HHSA (labor agreements, expanded services).</li>
+          <li>Capital Program decreased (fewer one‑time projects); intergovernmental revenues major source.</li>
+          <li>Method: appropriations/revenue/staffing analysis; transparency via Open Budget portal.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <h3> <small></small></h3>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+// ---- Data (from CAO change letters provided earlier) ----
+const categories=["Health & Human Services","Public Safety","Finance & General Government","Land Use & Environment","Finance Other","Capital Program"];
+const data={
+  FY23:{label:"FY23–24 (Revised)",values:{"Health & Human Services":3195.4,"Public Safety":2687.9,"Finance & General Government":889.6,"Land Use & Environment":674.4,"Finance Other":459.7,"Capital Program":258.9}},
+  FY24:{label:"FY24–25 (Revised)",values:{"Health & Human Services":3179.9,"Public Safety":2595.2,"Finance & General Government":857.9,"Land Use & Environment":648.3,"Finance Other":360.7,"Capital Program":8.9}},
+  FY26:{label:"FY25–26 (Revised)",values:{"Health & Human Services":3343.0,"Public Safety":2738.1,"Finance & General Government":925.2,"Land Use & Environment":685.6,"Finance Other":383.4,"Capital Program":8.8}}
+};
+
+// ---- Draw Y grid ----
+const maxVal=Math.max(...categories.flatMap(c=>[data.FY23.values[c],data.FY24.values[c],data.FY26.values[c]]));
+const step=500; const yMax=Math.ceil(maxVal/step)*step; const ygrid=document.getElementById('ygrid');
+for(let y=0;y<=yMax;y+=step){ const line=document.createElement('div'); line.className='line'; line.style.bottom=(y/yMax*100)+'%'; const tick=document.createElement('div'); tick.className='tick'; tick.style.bottom=(y/yMax*100)+'%'; tick.textContent=y.toLocaleString(); ygrid.appendChild(line); ygrid.appendChild(tick); }
+
+// ---- Bars + value labels + Δ badge ----
+const bars=document.getElementById('bars');
+function addVal(el, txt){ const s=document.createElement('span'); s.className='val'; s.textContent=txt; el.appendChild(s); }
+function pct(val){ return (val/yMax*100).toFixed(4)+'%'; }
+
+categories.forEach(cat=>{
+  const catDiv=document.createElement('div'); catDiv.className='cat';
+  const group=document.createElement('div'); group.className='group';
+  const trio=[{key:'FY23'},{key:'FY24'},{key:'FY26'}];
+  trio.forEach(({key})=>{
+    const v=data[key].values[cat];
+    const b=document.createElement('div'); b.className='bar'; b.dataset.year=key; b.style.height=pct(v); b.title=`${cat} — ${data[key].label}: $${v.toLocaleString()}M`;
+    addVal(b, '$'+(Math.round(v)).toLocaleString());
+    group.appendChild(b);
+  });
+  // Δ tag FY26 vs FY23
+  const d=data.FY26.values[cat]-data.FY23.values[cat];
+  const badge=document.createElement('div'); badge.className='delta '+(d>=0?'pos':'neg'); badge.textContent=(d>=0?'+':'')+d.toFixed(1)+'M'; group.appendChild(badge);
+
+  const x=document.createElement('div'); x.className='x-label'; x.textContent=cat; catDiv.appendChild(group); catDiv.appendChild(x); bars.appendChild(catDiv);
+});
+
+// ---- Table ----
+const table=document.getElementById('table');
+const thead=document.createElement('thead'); const trh=document.createElement('tr');
+['Functional Area','FY23–24','FY24–25','FY25–26','Δ FY26 vs FY23'].forEach(h=>{ const th=document.createElement('th'); th.textContent=h; trh.appendChild(th);}); thead.appendChild(trh); table.appendChild(thead);
+const tbody=document.createElement('tbody');
+function row(vals){ const td=document.createElement('td'); td.style.textAlign='right'; td.textContent=vals.toLocaleString(undefined,{maximumFractionDigits:1}); return td; }
+categories.forEach(cat=>{ const tr=document.createElement('tr'); const name=document.createElement('td'); name.textContent=cat; tr.appendChild(name); const v23=data.FY23.values[cat], v24=data.FY24.values[cat], v26=data.FY26.values[cat]; tr.appendChild(row(v23)); tr.appendChild(row(v24)); tr.appendChild(row(v26)); const d=v26-v23; const tdD=document.createElement('td'); tdD.style.textAlign='right'; tdD.innerHTML=(d>=0?'+':'')+d.toFixed(1); tr.appendChild(tdD); tbody.appendChild(tr); });
+const tfoot=document.createElement('tfoot'); const trT=document.createElement('tr'); const tdL=document.createElement('td'); tdL.innerHTML='<strong>Total</strong>'; trT.appendChild(tdL);
+function sum(o){return Object.values(o).reduce((a,b)=>a+b,0)} const t23=sum(data.FY23.values), t24=sum(data.FY24.values), t26=sum(data.FY26.values), dT=t26-t23;
+[t23,t24,t26].forEach(v=>{ const td=document.createElement('td'); td.style.textAlign='right'; td.innerHTML='<strong>'+v.toLocaleString(undefined,{maximumFractionDigits:1})+'</strong>'; trT.appendChild(td); });
+const tdDT=document.createElement('td'); tdDT.style.textAlign='right'; tdDT.innerHTML='<strong>'+(dT>=0?'+':'')+dT.toFixed(1)+'</strong>'; trT.appendChild(tdDT);
+
+tfoot.appendChild(trT); table.appendChild(tbody); table.appendChild(tfoot);
+</script>
+</body>
+</html>
